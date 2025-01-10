@@ -12,53 +12,96 @@ public class {ClassName} {
             writer = new BufferedWriter(new OutputStreamWriter(System.out));
         }
 
-        String next() throws IOException {
-            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-                String line = reader.readLine();
-                if (line == null) return null;
-                tokenizer = new StringTokenizer(line);
+        String next() {
+            try {
+                while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                    String line = reader.readLine();
+                    if (line == null) return null;
+                    tokenizer = new StringTokenizer(line);
+                }
+                return tokenizer.nextToken();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
             }
-            return tokenizer.nextToken();
         }
 
-        int nextInt() throws IOException {
-            return Integer.parseInt(next());
+        int nextInt() {
+            try {
+                return Integer.parseInt(next());
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return 0;
+            }
         }
 
-        long nextLong() throws IOException {
-            return Long.parseLong(next());
+        long nextLong() {
+            try {
+                return Long.parseLong(next());
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return 0L;
+            }
         }
 
-        double nextDouble() throws IOException {
-            return Double.parseDouble(next());
+        double nextDouble() {
+            try {
+                return Double.parseDouble(next());
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return 0.0;
+            }
         }
 
-        String nextLine() throws IOException {
-            tokenizer = null; // Clear tokenizer
-            return reader.readLine();
+        String nextLine() {
+            try {
+                tokenizer = null; // Clear tokenizer
+                return reader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
-        void print(Object obj) throws IOException {
-            writer.write(obj.toString());
+        void print(Object obj) {
+            try {
+                writer.write(obj.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        void println(Object obj) throws IOException {
-            writer.write(obj.toString());
-            writer.newLine();
+        void println(Object obj) {
+            try {
+                writer.write(obj.toString());
+                writer.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        void flush() throws IOException {
-            writer.flush();
+        void flush() {
+            try {
+                writer.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        void close() throws IOException {
-            reader.close();
-            writer.close();
+        void close() {
+            try {
+                reader.close();
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        FastIO fio = new FastIO();
+    static FastIO fio = new FastIO();
+
+    public static void main(String[] args) {
+
         fio.flush();
         fio.close();
     }
